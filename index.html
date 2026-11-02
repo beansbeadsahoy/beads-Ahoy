@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fff4df">
+<title>Beads Ahoy — Little charms, big joy</title>
+<style>
+:root {
+  --site-primary: #633326;
+  --site-secondary: #f1b56b;
+  --site-background: #fff4df;
+  --site-on-primary: #fff8ed;
+  --site-on-secondary: #4e291f;
+  --site-on-background: #4d2b22;
+  --site-font-body: "Trebuchet MS", "Avenir Next", Arial, sans-serif;
+  --site-font-heading: Georgia, "Times New Roman", serif;
+  --site-heading-scale: 1;
+  --site-spacing-scale: 1;
+  --site-radius-scale: 1;
+  --site-decoration-opacity: 1;
+  color-scheme: light dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--site-background); color: var(--site-on-background); font-family: var(--site-font-body); }
+#app { min-height: 100vh; width: 100%; border-radius: 0; overflow: hidden; background-color: light-dark(var(--site-background), #211713); color: light-dark(var(--site-on-background), #f8ead7); }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; }
+.wrap { width: min(1160px, calc(100% - 44px)); margin: auto; }
+.topline { background: var(--site-primary); color: var(--site-on-primary); text-align: center; padding: 9px 16px; font-size: 12px; letter-spacing: .12em; }
+header { position: sticky; top: 0; z-index: 20; background: light-dark(rgba(255,244,223,.94), rgba(37,25,20,.96)); backdrop-filter: blur(12px); border-bottom: 1px solid light-dark(#ead7bb,#49342b); }
+.nav { height: 82px; display:flex; align-items:center; justify-content:space-between; gap: 20px; }
+.brand { display:flex; align-items:center; gap: 12px; font-weight: 900; letter-spacing:.04em; color: light-dark(var(--site-primary),#f4d8b1); }
+.brand img { width:54px; height:54px; border-radius:50%; object-fit:cover; }
+.brand span { font-family:var(--site-font-heading); font-size:22px; }
+.links { display:flex; align-items:center; gap:28px; font-size:13px; font-weight:800; }
+.links a:hover { color:#df6b38; }
+.pill { display:inline-flex; justify-content:center; align-items:center; gap:8px; border:0; border-radius:999px; padding:14px 22px; background:var(--site-primary); color:var(--site-on-primary); font-weight:900; letter-spacing:.1em; font-size:11px; transition:.22s ease; }
+.pill:hover { transform:translateY(-2px); box-shadow:0 12px 24px rgba(99,51,38,.22); }
+.pill.gold { background:var(--site-secondary); color:var(--site-on-secondary); }
+.menu { display:none; border:1px solid #d9c2a3; background:transparent; border-radius:12px; padding:9px 12px; color:inherit; }
+.hero { position:relative; padding:76px 0 70px; background:radial-gradient(circle at 83% 23%, rgba(243,184,113,.42), transparent 28%), radial-gradient(circle at 12% 90%, rgba(126,85,202,.12), transparent 25%); }
+.hero-grid { display:grid; grid-template-columns: .95fr 1.05fr; gap:54px; align-items:center; }
+.eyebrow { display:inline-flex; align-items:center; gap:9px; text-transform:uppercase; letter-spacing:.18em; font-size:11px; font-weight:900; color:#b75b35; }
+.dot { width:8px; height:8px; border-radius:50%; background:#f0a63d; display:inline-block; }
+h1,h2,h3 { font-family:var(--site-font-heading); }
+h1 { font-size:calc(clamp(46px,6vw,76px) * var(--site-heading-scale)); line-height:.98; letter-spacing:-.045em; margin:20px 0; color:light-dark(#542a21,#f7dfc1); }
+h1 em { color:#d56a39; font-style:normal; }
+.hero p { max-width:490px; font-size:16px; line-height:1.8; color:light-dark(#74574a,#d9c3ad); }
+.hero-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:27px; }
+.hero-note { margin-top:22px; font-size:12px; color:light-dark(#957a66,#b9a18b); }
+.hero-art { position:relative; }
+.hero-art img { width:100%; display:block; border-radius:28px; box-shadow:0 24px 55px rgba(82,43,29,.17); }
+.sticker { position:absolute; bottom:-20px; left:-22px; background:#7a4bd1; color:white; width:116px; height:116px; border-radius:50%; display:grid; place-items:center; text-align:center; font-family:var(--site-font-heading); font-size:15px; letter-spacing:.04em; font-weight:700; }
+.sticker b { display:block; font-size:25px; }
+.trust { padding:24px 0; background:var(--site-primary); color:var(--site-on-primary); }
+.trust-row { display:flex; justify-content:space-around; align-items:center; gap:18px; flex-wrap:wrap; text-align:center; }
+.trust-item { font-size:12px; font-weight:800; letter-spacing:.08em; }
+.trust-item span { color:#f3bd75; margin-right:7px; font-size:16px; }
+section { padding:86px 0; }
+.section-head { text-align:center; max-width:650px; margin:0 auto 42px; }
+.kicker { color:#cb693c; font-size:11px; letter-spacing:.2em; font-weight:900; text-transform:uppercase; }
+h2 { font-size:calc(clamp(34px,4.3vw,52px) * var(--site-heading-scale)); letter-spacing:-.035em; line-height:1.06; margin:12px 0; color:light-dark(#542a21,#f7dfc1); }
+.section-head p { color:light-dark(#816757,#c8b29e); line-height:1.75; font-size:14px; }
+.services { background:light-dark(#fffaf0,#2b1e19); }
+.cards { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.card { background:light-dark(#fff4df,#38271f); border:1px solid light-dark(#efdfc7,#594034); border-radius:22px; padding:28px; min-height:255px; position:relative; overflow:hidden; }
+.card .num { color:#d66b3d; font-size:12px; letter-spacing:.16em; font-weight:900; }
+.card .emoji { font-size:33px; margin:19px 0 10px; }
+.card h3 { font-size:25px; margin:0 0 10px; color:light-dark(#633326,#f7dfc1); }
+.card p { font-size:13px; line-height:1.75; color:light-dark(#826b5a,#c9b39f); margin:0; }
+.card:after { content:""; position:absolute; width:100px; height:100px; border:1px solid rgba(210,130,74,.28); border-radius:50%; right:-35px; bottom:-38px; box-shadow:0 0 0 13px rgba(210,130,74,.08); }
+.about-grid { display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:56px; }
+.about-img { position:relative; }
+.about-img img { width:100%; display:block; border-radius:24px; box-shadow:0 18px 40px rgba(75,42,27,.13); }
+.about-img:before { content:""; position:absolute; inset:15px -15px -15px 15px; border:2px solid #d9a66c; border-radius:24px; z-index:-1; }
+.about-copy p { font-size:14px; line-height:1.9; color:light-dark(#806756,#c9b29d); }
+.values { display:flex; flex-wrap:wrap; gap:9px; margin:24px 0; }
+.tag { padding:9px 13px; border-radius:30px; background:light-dark(#f6e3c8,#4b3328); color:light-dark(#74402d,#f4d3a9); font-size:11px; font-weight:900; }
+.gallery { background:light-dark(#f5e7d0,#241914); }
+.gallery-grid { display:grid; grid-template-columns:1.1fr .9fr 1fr; grid-auto-rows:210px; gap:14px; }
+.gallery-grid figure { margin:0; overflow:hidden; border-radius:18px; position:relative; background:#e7d4b7; }
+.gallery-grid figure:first-child { grid-row:span 2; }
+.gallery-grid figure:nth-child(4) { grid-column:span 2; }
+.gallery-grid img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s; }
+.gallery-grid figure:hover img { transform:scale(1.045); }
+.gallery-grid figcaption { position:absolute; left:12px; bottom:12px; color:white; background:rgba(49,27,20,.68); padding:8px 12px; border-radius:30px; font-size:11px; backdrop-filter:blur(5px); }
+.process-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+.step { text-align:center; padding:12px; }
+.step strong { width:45px; height:45px; border-radius:50%; display:grid; place-items:center; margin:0 auto 16px; background:#7444cb; color:white; font-family:var(--site-font-heading); font-size:20px; }
+.step h3 { font-size:23px; margin:0 0 8px; }
+.step p { color:light-dark(#806756,#c9b29d); font-size:13px; line-height:1.7; }
+.reviews { background:light-dark(#fffaf0,#2b1e19); }
+.review-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.review-card { background:light-dark(#fff4df,#38271f); border:1px solid light-dark(#efdfc7,#594034); border-radius:20px; padding:24px; }
+.review-stars { color:#d99a35; letter-spacing:.12em; font-size:17px; margin-bottom:12px; }
+.review-card p { color:light-dark(#765c4c,#d2bca7); font-size:13px; line-height:1.8; margin:0 0 18px; }
+.review-card strong { color:light-dark(#633326,#f7dfc1); font-size:13px; }
+.review-source { display:block; color:light-dark(#a1846d,#b99f87); font-size:10px; margin-top:5px; }
+@media(max-width:800px) { .review-grid { grid-template-columns:1fr; } }
+.cta { padding:70px 0; background:var(--site-primary); color:var(--site-on-primary); text-align:center; position:relative; overflow:hidden; }
+.cta h2 { color:#fff3df; }
+.cta p { color:#e6cbb0; font-size:14px; line-height:1.8; max-width:550px; margin:0 auto 25px; }
+.cta .pill { background:#f2b66d; color:#4d291e; }
+footer { background:light-dark(#281a15,#170f0c); color:#f6e4cd; padding:34px 0; }
+.foot { display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap; }
+.foot-brand { display:flex; align-items:center; gap:12px; font-family:var(--site-font-heading); font-size:21px; }
+.foot-brand img { width:48px; height:48px; border-radius:50%; }
+.foot small { color:#c5a991; font-size:11px; }
+.foot-links { display:flex; gap:18px; font-size:12px; }
+@media(max-width:800px) {
+  .hero-grid,.about-grid { grid-template-columns:1fr; gap:34px; }
+  .hero { padding:55px 0 65px; }
+  .hero-art { max-width:620px; margin:0 auto; }
+  .cards { grid-template-columns:1fr; }
+  .card { min-height:0; }
+  .gallery-grid { grid-template-columns:1fr 1fr; grid-auto-rows:180px; }
+  .gallery-grid figure:first-child { grid-row:span 2; }
+  .gallery-grid figure:nth-child(4) { grid-column:span 1; }
+  .process-grid { grid-template-columns:1fr; gap:8px; }
+  .links { display:none; position:absolute; top:81px; left:0; right:0; padding:20px 24px; background:light-dark(#fff4df,#281a15); flex-direction:column; align-items:flex-start; border-bottom:1px solid light-dark(#e7d9be,#372822); }
+  .links.open { display:flex; }
+  .menu { display:block; }
+  .nav > .pill { display:none; }
+  section { padding:65px 0; }
+}
+@media(max-width:480px) {
+  .wrap { width:min(100% - 30px,1160px); }
+  .brand span { font-size:19px; }
+  .brand img { width:46px; height:46px; }
+  .gallery-grid { grid-auto-rows:145px; gap:8px; }
+  .sticker { width:90px; height:90px; font-size:15px; bottom:-12px; left:-8px; }
+  .sticker b { font-size:20px; }
+  .trust-item { width:42%; }
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="topline">HANDMADE WITH HEART · LITTLE DETAILS, BIG MEMORIES</div>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#home"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABELDA8MChEPDg8TEhEUGSobGRcXGTMkJh4qPDU/Pjs1OjlDS2BRQ0daSDk6U3FUWmNma2xrQFB2fnRofWBpa2f/2wBDARITExkWGTEbGzFnRTpFZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZT8s" alt="Beads Ahoy logo"><span>Beads Ahoy</span></a>
+      <nav class="links" id="navlinks"><a href="#services">What we do</a><a href="#story">Our story</a><a href="#gallery">Our work</a><a href="#contact">Contact</a></nav>
+      <a class="pill" href="#contact">LET'S CREATE <span>↗</span></a>
+      <button class="menu" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
+    </div>
+  </header>
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow"><span class="dot"></span> Your happy little charm corner</div>
+          <h1>Make it yours.<br><em>Make it joyful.</em></h1>
+          <p>From colorful custom charms to keepsakes made just for you, Beads Ahoy turns tiny treasures into big smiles. Pick your colors, choose your charms, and create something that feels like joy in your hands.</p>
+          <div class="hero-actions"><a class="pill" href="#services">EXPLORE THE FUN <span>→</span></a><a class="pill gold" href="https://wa.me/639760005974?text=Hi%20Beads%20Ahoy!%20I'd%20love%20to%20inquire." target="_blank" rel="noopener">CHAT ON WHATSAPP <span>↗</span></a></div>
+          <div class="hero-note">♡ Personalized pieces · On-site charm booth · Event-ready fun</div>
+        </div>
+        <div class="hero-art">
+          <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABELDA8MChEPDg8TEhEUGSobGRcXGTMkJh4qPDU/Pjs1OjlDS2BRQ0daSDk6U3FUWmNma2xrQFB2fnRofWBpa2f/2wBDARITExkWGTEbGzFnRTpFZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dn"
